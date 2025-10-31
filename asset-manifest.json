@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Question/static/css/main.2ae6eefe.css",
+    "main.js": "/Question/static/js/main.03e5f490.js",
+    "static/js/977.305eb4bd.chunk.js": "/Question/static/js/977.305eb4bd.chunk.js",
+    "static/js/455.235ebf9e.chunk.js": "/Question/static/js/455.235ebf9e.chunk.js",
+    "static/js/453.0ec98f64.chunk.js": "/Question/static/js/453.0ec98f64.chunk.js",
+    "static/media/logo.svg": "/Question/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Question/index.html",
+    "main.2ae6eefe.css.map": "/Question/static/css/main.2ae6eefe.css.map",
+    "main.03e5f490.js.map": "/Question/static/js/main.03e5f490.js.map",
+    "977.305eb4bd.chunk.js.map": "/Question/static/js/977.305eb4bd.chunk.js.map",
+    "455.235ebf9e.chunk.js.map": "/Question/static/js/455.235ebf9e.chunk.js.map",
+    "453.0ec98f64.chunk.js.map": "/Question/static/js/453.0ec98f64.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ae6eefe.css",
+    "static/js/main.03e5f490.js"
+  ]
+}
