@@ -1,0 +1,702 @@
+.question-paper-maker {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.dropdown-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.dropdown {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  min-width: 120px;
+  transition: border-color 0.3s ease;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.part-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.qa-box {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.qa-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.question-number {
+  background-color: #ecf0f1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.qa-textarea, .sub-textarea, .key-answer-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.qa-textarea:focus, .sub-textarea:focus, .key-answer-textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.qa-textarea::placeholder, .sub-textarea::placeholder, .key-answer-textarea::placeholder {
+  color: #999;
+}
+
+.sub-questions {
+  margin-bottom: 10px;
+}
+
+.sub-question {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.sub-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #2c3e50;
+}
+
+.key-answer-section {
+  display: none;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.key-answer-section.show {
+  display: block;
+}
+
+.key-answer-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #27ae60;
+  font-size: 16px;
+}
+
+.lower-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.upload-btn, .key-btn, .add-question-btn, .submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.upload-btn:hover {
+  background-color: #2980b9;
+}
+
+.key-btn {
+  background-color: #27ae60;
+  color: white;
+  margin-left: auto;
+}
+
+.key-btn:hover {
+  background-color: #229954;
+}
+
+.add-question-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #9b59b6;
+  color: white;
+  max-width: 200px;
+}
+
+.add-question-btn:hover {
+  background-color: #8e44ad;
+}
+
+.submit-btn {
+  display: block;
+  margin: 40px auto;
+  background-color: #e67e22;
+  color: white;
+  max-width: 200px;
+}
+
+.submit-btn:hover {
+  background-color: #d35400;
+}
+
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+}
+
+.marks-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 60px;
+  text-align: center;
+}
+
+.section-total {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px auto;
+  max-width: 800px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.total-marks {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 30px auto;
+  max-width: 800px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.upload-container {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.file-input {
+  display: none;
+}
+
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* ---
+/* --- PDF TEMPLATE STYLES V3 (Matches new Image)
+/* ---
+/* --- These styles are for the hidden 'pdf-content-wrapper' div
+/* ---
+
+#pdf-content-wrapper {
+  font-family: 'Times New Roman', Times, serif;
+  color: #000;
+  background-color: #fff;
+  font-size: 11pt;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Reg. No. Header --- */
+.pdf-regno-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 4px;
+  font-weight: bold;
+}
+.pdf-regno-box {
+  width: 25px;
+  height: 25px;
+  /* border: 1px solid #000; */
+  margin-left: 5px;
+}
+
+/* --- Main Header --- */
+.pdf-header-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+.pdf-header-table td {
+  padding: 8px;
+  vertical-align: top;
+}
+.pdf-header-logo-cell {
+  width: 150px;
+  text-align: center;
+  padding: 10px 5px;
+  vertical-align: middle;
+}
+.pdf-logo {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+}
+.pdf-header-title-cell {
+  text-align: center;
+  vertical-align: top;
+  font-size: 11pt;
+  font-weight: bold;
+  padding: 10px;
+}
+.pdf-title-main {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+/* Table inside the header for details */
+.pdf-header-details-table {
+  width: 100%;
+  border: none;
+  font-size: 11pt;
+  margin-top: 10px;
+}
+.pdf-header-details-table td {
+  border: none;
+  text-align: left;
+  padding: 2px 5px;
+  font-weight: normal;
+}
+.pdf-header-details-table td:first-child {
+  font-weight: bold;
+  width: 40%;
+}
+
+.pdf-regs-line {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
+/* --- Info Line --- */
+.pdf-info-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11pt;
+  padding: 8px 4px;
+  /* border-top: 1px solid #000; */
+  /* border-bottom: 1px solid #000; */
+  margin-bottom: 15px;
+}
+
+/* --- Body --- */
+.pdf-body {
+  margin-top: 10px;
+}
+.pdf-co-section {
+  margin-bottom: 20px;
+}
+.pdf-co-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12pt;
+  margin-bottom: 10px;
+}
+.pdf-part-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12pt;
+  margin-bottom: -1px; /* Overlap border */
+  padding: 5px 10px;
+  font-weight: bold;
+}
+.pdf-part-b .pdf-part-title {
+  justify-content: center; /* Part B title is centered */
+}
+
+/* --- Question Table --- */
+.pdf-q-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: none; /* Handled by part-title */
+}
+.pdf-q-table th, .pdf-q-table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 11pt;
+}
+.pdf-q-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+}
+.pdf-q-table th:nth-child(1) { width: 10%; } /* Q.NO */
+.pdf-q-table th:nth-child(2) { width: 75%; } /* QUESTION */
+.pdf-q-table th:nth-child(3) { width: 15%; } /* BT LEVEL */
+
+.pdf-q-number {
+  text-align: center;
+  width: 10%;
+  vertical-align: top;
+}
+.pdf-q-content {
+  width: 75%;
+}
+.pdf-q-bt {
+  text-align: center;
+  width: 15%;
+  vertical-align: top;
+}
+.pdf-q-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+.pdf-q-or-row td:first-child {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* --- Footer --- */
+.pdf-footer-table {
+  width: 100%;
+  margin-top: 40px;
+  border: none;
+  font-size: 11pt;
+  border-collapse: collapse;
+  page-break-inside: avoid; /* Try to keep footer from splitting */
+}
+.pdf-footer-table td {
+  padding: 15px 5px;
+  text-align: center;
+  width: 20%;
+}
+.pdf-footer-table tr:first-child td {
+  padding-bottom: 30px; /* Space for signature */
+}
+
+@media (max-width: 768px) {
+  .dropdown-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .lower-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .key-btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  
+  .qa-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .preview-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pdf-preview-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.preview-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.preview-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.preview-btn:hover {
+  background-color: #2980b9;
+}
+
+.pdf-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.pdf-preview-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 800px;
+}
+
+.pdf-preview-section h3 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.pdf-preview-frame {
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 600px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pdf-content-wrapper-preview {
+  font-family: 'Times New Roman', Times, serif;
+  color: #000;
+  background-color: #fff;
+  font-size: 11pt;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75in;
+}
+
+/* --- Reg. No. Header --- */
+.pdf-regno-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 4px;
+  font-weight: bold;
+}
+.pdf-regno-box {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #000;
+  margin-left: 5px;
+}
+
+/* --- Main Header --- */
+.pdf-header-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+.pdf-header-table td {
+  padding: 8px;
+  vertical-align: top;
+}
+.pdf-header-logo-cell {
+  width: 150px;
+  text-align: center;
+  padding: 10px 5px;
+  vertical-align: middle;
+}
+.pdf-logo {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+}
+.pdf-header-title-cell {
+  text-align: center;
+  vertical-align: top;
+  font-size: 11pt;
+  font-weight: bold;
+  padding: 10px;
+}
+.pdf-title-main {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+/* Table inside the header for details */
+.pdf-header-details-table {
+  width: 100%;
+  border: none;
+  font-size: 11pt;
+  margin-top: 10px;
+}
+.pdf-header-details-table td {
+  border: none;
+  text-align: left;
+  padding: 2px 5px;
+  font-weight: normal;
+}
+.pdf-header-details-table td:first-child {
+  font-weight: bold;
+  width: 40%;
+}
+
+.pdf-regs-line {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
+/* --- Info Line --- */
+.pdf-info-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11pt;
+  padding: 8px 4px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+}
+
+/* --- Body --- */
+.pdf-body {
+  margin-top: 10px;
+}
+.pdf-co-section {
+  margin-bottom: 20px;
+}
+.pdf-co-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12pt;
+  margin-bottom: 10px;
+}
+.pdf-part-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12pt;
+  margin-bottom: -1px; /* Overlap border */
+  padding: 5px 10px;
+  font-weight: bold;
+}
+.pdf-part-b .pdf-part-title {
+  justify-content: center; /* Part B title is centered */
+}
+
+/* --- Question Table --- */
+.pdf-q-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: none; /* Handled by part-title */
+}
+.pdf-q-table th, .pdf-q-table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 11pt;
+}
+
+/* --- Footer --- */
+.pdf-footer-table {
+  width: 100%;
+  margin-top: 40px;
+  border: none;
+  font-size: 11pt;
+  border-collapse: collapse;
+  page-break-inside: avoid; /* Try to keep footer from splitting */
+}
+.pdf-footer-table td {
+  padding: 15px 5px;
+  text-align: center;
+  width: 20%;
+}
+.pdf-footer-table tr:first-child td {
+  padding-bottom: 30px; /* Space for signature */
+}
+
+@media (max-width: 768px) {
+  .dropdown-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .lower-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .key-btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  
+  .qa-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .preview-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pdf-preview-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
