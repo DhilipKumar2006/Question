@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Question/static/css/main.b45d020e.css",
-    "main.js": "/Question/static/js/main.0ac35b55.js",
+    "main.css": "/Question/static/css/main.0c5ec096.css",
+    "main.js": "/Question/static/js/main.220d67fc.js",
     "static/js/977.be933521.chunk.js": "/Question/static/js/977.be933521.chunk.js",
     "static/js/455.ab0d5084.chunk.js": "/Question/static/js/455.ab0d5084.chunk.js",
     "static/js/453.65331208.chunk.js": "/Question/static/js/453.65331208.chunk.js",
     "static/media/logo.svg": "/Question/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Question/index.html",
-    "main.b45d020e.css.map": "/Question/static/css/main.b45d020e.css.map",
-    "main.0ac35b55.js.map": "/Question/static/js/main.0ac35b55.js.map",
+    "main.0c5ec096.css.map": "/Question/static/css/main.0c5ec096.css.map",
+    "main.220d67fc.js.map": "/Question/static/js/main.220d67fc.js.map",
     "977.be933521.chunk.js.map": "/Question/static/js/977.be933521.chunk.js.map",
     "455.ab0d5084.chunk.js.map": "/Question/static/js/455.ab0d5084.chunk.js.map",
     "453.65331208.chunk.js.map": "/Question/static/js/453.65331208.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b45d020e.css",
-    "static/js/main.0ac35b55.js"
+    "static/css/main.0c5ec096.css",
+    "static/js/main.220d67fc.js"
   ]
 }
