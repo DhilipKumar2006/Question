@@ -10,6 +10,18 @@ const QuestionPaperMaker = () => {
   const [currentSubject, setCurrentSubject] = useState('');
   const [currentSubjectCode, setCurrentSubjectCode] = useState('');
   const [currentProgram, setCurrentProgram] = useState('');
+  const [currentYear, setCurrentYear] = useState('I');
+  const [currentDate, setCurrentDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date in YYYY-MM-DD format
+  
+  // Function to format date as DD/MM/YYYY
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    // Parse the date string (could be in YYYY-MM-DD format or other formats)
+    const date = new Date(dateString);
+    // Format as DD/MM/YYYY
+    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  };
+
   const [sections, setSections] = useState([]);
   const fileInputRefs = useRef({});
 
@@ -22,6 +34,30 @@ const QuestionPaperMaker = () => {
       { code: 'MA23111', title: 'Matrices and Calculus' },
       { code: 'GE23111', title: 'Problem Solving and C Programming' },
       { code: 'GE23114', title: 'Electrical, Electronics and Instrumentation Engineering' }
+    ],
+    'B.E – Computer and Communication Engineering (ECE)': [
+      { code: 'GE23112', title: 'Heritage of Tamils' },
+      { code: 'HS23111', title: 'Communicative English' },
+      { code: 'CY23111', title: 'Engineering Chemistry' },
+      { code: 'GE23111', title: 'Problem Solving and C Programming' },
+      { code: 'GE23131', title: 'Engineering Graphics' },
+      { code: 'MA23111', title: 'Matrices and Calculus' }
+    ],
+    'B.E – Computer Science and Engineering (CSE)': [
+      { code: 'GE23112', title: 'Heritage of Tamils' },
+      { code: 'HS23111', title: 'Communicative English' },
+      { code: 'CY23111', title: 'Engineering Chemistry' },
+      { code: 'GE23111', title: 'Problem Solving and C Programming' },
+      { code: 'GE23131', title: 'Engineering Graphics' },
+      { code: 'MA23111', title: 'Matrices and Calculus' }
+    ],
+    'B.E – Electronics Engineering (VLSI Design & Technology)': [
+      { code: 'HS23111', title: 'Communicative English' },
+      { code: 'GE23112', title: 'Heritage of Tamils' },
+      { code: 'PH23112', title: 'Physics for Electronics Engineering' },
+      { code: 'MA23111', title: 'Matrices and Calculus' },
+      { code: 'GE23111', title: 'Problem Solving and C Programming' },
+      { code: 'EC23111', title: 'Circuit Analysis' }
     ],
     'B.Tech – Artificial Intelligence and Data Science': [
       { code: 'HS23111', title: 'Communicative English' },
@@ -45,14 +81,6 @@ const QuestionPaperMaker = () => {
       { code: 'CY23111', title: 'Engineering Chemistry' },
       { code: 'AD23111', title: 'Python for Data Science' }
     ],
-    'B.E – Computer Science and Engineering (CSE)': [
-      { code: 'GE23112', title: 'Heritage of Tamils' },
-      { code: 'HS23111', title: 'Communicative English' },
-      { code: 'CY23111', title: 'Engineering Chemistry' },
-      { code: 'GE23111', title: 'Problem Solving and C Programming' },
-      { code: 'GE23131', title: 'Engineering Graphics' },
-      { code: 'MA23111', title: 'Matrices and Calculus' }
-    ],
     'B.Tech – Artificial Intelligence and Machine Learning (AI & ML)': [
       { code: 'GE23112', title: 'Heritage of Tamils' },
       { code: 'HS23111', title: 'Communicative English' },
@@ -68,22 +96,6 @@ const QuestionPaperMaker = () => {
       { code: 'MA23111', title: 'Matrices and Calculus' },
       { code: 'GE23111', title: 'Problem Solving and C Programming' },
       { code: 'EC23111', title: 'Circuit Analysis' }
-    ],
-    'B.E – Electronics Engineering (VLSI Design & Technology)': [
-      { code: 'HS23111', title: 'Communicative English' },
-      { code: 'GE23112', title: 'Heritage of Tamils' },
-      { code: 'PH23112', title: 'Physics for Electronics Engineering' },
-      { code: 'MA23111', title: 'Matrices and Calculus' },
-      { code: 'GE23111', title: 'Problem Solving and C Programming' },
-      { code: 'EC23111', title: 'Circuit Analysis' }
-    ],
-    'B.E – Computer and Communication Engineering (ECE)': [
-      { code: 'GE23112', title: 'Heritage of Tamils' },
-      { code: 'HS23111', title: 'Communicative English' },
-      { code: 'CY23111', title: 'Engineering Chemistry' },
-      { code: 'GE23111', title: 'Problem Solving and C Programming' },
-      { code: 'GE23131', title: 'Engineering Graphics' },
-      { code: 'MA23111', title: 'Matrices and Calculus' }
     ]
   };
 
@@ -249,6 +261,16 @@ const QuestionPaperMaker = () => {
     }
   };
 
+  // Add function to handle year change
+  const handleYearChange = (e) => {
+    setCurrentYear(e.target.value);
+  };
+
+  // Add function to handle date change
+  const handleDateChange = (e) => {
+    setCurrentDate(e.target.value);
+  };
+
   const updateQuestion = (sectionId, questionId, field, value) => {
     setSections(prevSections => {
       return prevSections.map(section => {
@@ -310,12 +332,47 @@ const QuestionPaperMaker = () => {
     });
   };
 
+  // Improved handleImageUpload function with better image resizing and optimization
   const handleImageUpload = (sectionId, questionId, e) => {
     const file = e.target.files[0];
     if (file) {
+      // Create an image object
+      const img = new Image();
+      img.onload = () => {
+        // Create a canvas element for image resizing
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set the desired width (300px) and maintain aspect ratio
+        const maxWidth = 300;
+        const scaleFactor = Math.min(maxWidth / img.width, 1); // Don't upscale
+        const newWidth = img.width * scaleFactor;
+        const newHeight = img.height * scaleFactor;
+        
+        // Set canvas dimensions
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+        
+        // Use better image rendering quality
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        
+        // Draw the resized image on the canvas
+        ctx.drawImage(img, 0, 0, newWidth, newHeight);
+        
+        // Convert to data URL with optimized quality
+        // Use higher quality for smaller images, lower for larger ones
+        const quality = newWidth > 250 ? 0.7 : 0.8;
+        const resizedImageData = canvas.toDataURL('image/jpeg', quality);
+        
+        // Update the question with the resized image
+        updateQuestion(sectionId, questionId, 'image', resizedImageData);
+      };
+      
+      // Read the file as data URL
       const reader = new FileReader();
       reader.onload = (ev) => {
-        updateQuestion(sectionId, questionId, 'image', ev.target.result);
+        img.src = ev.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -380,7 +437,7 @@ const QuestionPaperMaker = () => {
         body { font-family: Arial, sans-serif; margin: 40px; }
         h1 { text-align: center; }
         h2 { color: #2c3e50; }
-        img { max-width: 100%; height: auto; }
+        img { max-width: 300px; height: auto; }
         p { margin-bottom: 20px; }
       </style>
       </head>
@@ -436,7 +493,7 @@ const QuestionPaperMaker = () => {
         body { font-family: Arial, sans-serif; margin: 40px; }
         h1 { text-align: center; color: #006400; }
         h2 { color: #2c3e50; }
-        img { max-width: 100%; height: auto; }
+        img { max-width: 300px; height: auto; }
         p { margin-bottom: 10px; }
         .key-answer { 
           color: #006400; 
@@ -510,6 +567,16 @@ const QuestionPaperMaker = () => {
           <option value="">Select Semester</option>
           <option value="1">1</option>
         </select>
+        <select className="dropdown" onChange={handleYearChange} value={currentYear}>
+          <option value="I">I Year</option>
+          
+        </select>
+        <input 
+          type="date" 
+          className="dropdown" 
+          value={currentDate} 
+          onChange={handleDateChange} 
+        />
         <select className="dropdown" onChange={handleProgramChange} value={currentProgram}>
           <option value="">Select Program</option>
           {Object.keys(subjectData).map(program => (
@@ -738,7 +805,7 @@ const QuestionPaperMaker = () => {
                           <tbody>
                             <tr>
                               <td><strong>Year</strong></td>
-                              <td>: II</td>
+                              <td>: {currentYear}</td>
                             </tr>
                             <tr>
                               <td><strong>Semester</strong></td>
@@ -770,7 +837,7 @@ const QuestionPaperMaker = () => {
                 <div className="pdf-regs-line">[Regulations 2023]</div>
 
                 <div className="pdf-info-line">
-                  <span><strong>Date:</strong> ________________</span>
+                  <span><strong>Date:</strong> {formatDate(currentDate)}</span>
                   <span>
                     <strong>Time:</strong> {currentConfig?.overallTotal === 50 ? '90 Minutes' : '45 Minutes'}
                   </span>
@@ -907,7 +974,7 @@ const QuestionPaperMaker = () => {
                           <tbody>
                             <tr>
                               <td><strong>Year</strong></td>
-                              <td>: II</td>
+                              <td>: {currentYear}</td>
                             </tr>
                             <tr>
                               <td><strong>Semester</strong></td>
@@ -939,7 +1006,7 @@ const QuestionPaperMaker = () => {
                 <div className="pdf-regs-line">[Regulations 2023]</div>
 
                 <div className="pdf-info-line">
-                  <span><strong>Date:</strong> ________________</span>
+                  <span><strong>Date:</strong> {formatDate(currentDate)}</span>
                   <span>
                     <strong>Time:</strong> {currentConfig?.overallTotal === 50 ? '90 Minutes' : '45 Minutes'}
                   </span>
@@ -1101,7 +1168,7 @@ const QuestionPaperMaker = () => {
                     <tbody>
                       <tr>
                         <td><strong>Year</strong></td>
-                        <td>: II</td>
+                        <td>: {currentYear}</td>
                       </tr>
                       <tr>
                         <td><strong>Semester</strong></td>
@@ -1134,7 +1201,7 @@ const QuestionPaperMaker = () => {
 
          
           <div className="pdf-info-line">
-            <span><strong>Date:</strong> ________________</span>
+            <span><strong>Date:</strong> {formatDate(currentDate)}</span>
             <span>
               <strong>Time:</strong> {currentConfig?.overallTotal === 50 ? '90 Minutes' : '45 Minutes'}
             </span>
@@ -1282,7 +1349,7 @@ const QuestionPaperMaker = () => {
                     <tbody>
                       <tr>
                         <td><strong>Year</strong></td>
-                        <td>: II</td>
+                        <td>: {currentYear}</td>
                       </tr>
                       <tr>
                         <td><strong>Semester</strong></td>
@@ -1314,7 +1381,7 @@ const QuestionPaperMaker = () => {
           <div className="pdf-regs-line">[Regulations 2023]</div>
 
           <div className="pdf-info-line">
-            <span><strong>Date:</strong> ________________</span>
+            <span><strong>Date:</strong> {formatDate(currentDate)}</span>
             <span>
               <strong>Time:</strong> {currentConfig?.overallTotal === 50 ? '90 Minutes' : '45 Minutes'}
             </span>

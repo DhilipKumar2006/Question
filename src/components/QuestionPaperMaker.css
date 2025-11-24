@@ -242,8 +242,8 @@
 }
 
 .image-preview {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 300px;
+  height: auto;
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -408,7 +408,7 @@
   vertical-align: top;
 }
 .pdf-q-image {
-  max-width: 100%;
+  max-width: 300px;
   height: auto;
   margin-top: 10px;
 }
