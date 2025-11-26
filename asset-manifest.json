@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/Question/static/css/main.5be9ed64.css",
-    "main.js": "/Question/static/js/main.5dac0aa0.js",
+    "main.js": "/Question/static/js/main.38fb5bc2.js",
     "static/js/977.be933521.chunk.js": "/Question/static/js/977.be933521.chunk.js",
     "static/js/455.ab0d5084.chunk.js": "/Question/static/js/455.ab0d5084.chunk.js",
     "static/js/453.65331208.chunk.js": "/Question/static/js/453.65331208.chunk.js",
     "index.html": "/Question/index.html",
     "main.5be9ed64.css.map": "/Question/static/css/main.5be9ed64.css.map",
-    "main.5dac0aa0.js.map": "/Question/static/js/main.5dac0aa0.js.map",
+    "main.38fb5bc2.js.map": "/Question/static/js/main.38fb5bc2.js.map",
     "977.be933521.chunk.js.map": "/Question/static/js/977.be933521.chunk.js.map",
     "455.ab0d5084.chunk.js.map": "/Question/static/js/455.ab0d5084.chunk.js.map",
     "453.65331208.chunk.js.map": "/Question/static/js/453.65331208.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5be9ed64.css",
-    "static/js/main.5dac0aa0.js"
+    "static/js/main.38fb5bc2.js"
   ]
 }
